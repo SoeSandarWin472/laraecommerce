@@ -33,18 +33,13 @@ Route::prefix('admin')
             'index',
         ]);
 
-        Route::get('category', [
-            App\Http\Controllers\Admin\CategoryController::class,
-            'index',
-        ]);
-
-        Route::get('category/create', [
-            App\Http\Controllers\Admin\CategoryController::class,
-            'create',
-        ]);
-
-        Route::post('category', [
-            App\Http\Controllers\Admin\CategoryController::class,
-            'store',
-        ]);
+        Route::controller(
+            App\Http\Controllers\Admin\CategoryController::class
+        )->group(function () {
+            Route::get('/category', 'index');
+            Route::get('/category/create', 'create');
+            Route::post('/category', 'store');
+            Route::get('/category/{category}/edit', 'edit');
+            Route::put('/category/{category}', 'update');
+        });
     });
