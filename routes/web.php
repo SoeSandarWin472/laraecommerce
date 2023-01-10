@@ -42,4 +42,6 @@ Route::prefix('admin')
             Route::get('/category/{category}/edit', 'edit');
             Route::put('/category/{category}', 'update');
         });
+
+        Route::get('/brands', App\Http\Livewire\Admin\Brand\Index::class);
     });
