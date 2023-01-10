@@ -58,11 +58,9 @@ class CategoryController extends Controller
 
     public function update(CategoryFormRequest $request, $category)
     {
+        $validatedData = $request->validated();
         $category = Category::findOrFail($category);
 
-        $validatedData = $request->validated();
-
-        $category = new Category();
         $category->name = $validatedData['name'];
         $category->slug = Str::slug($validatedData['slug']);
         $category->description = $validatedData['description'];
@@ -75,7 +73,6 @@ class CategoryController extends Controller
             $file = $request->file('image');
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;
-
             $file->move('uploads/category/', $filename);
             $category->image = $filename;
         }
