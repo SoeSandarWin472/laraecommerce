@@ -8,17 +8,18 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductFormRequest;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        return view('admin.products.index');
+        $products = Product::all();
+        return view('admin.products.index', compact('products'));
     }
 
     public function create()
     {
-        // dd('hit');
         $categories = Category::all();
         $brands = Brand::all();
         return view('admin.products.create', compact('categories', 'brands'));
@@ -67,4 +68,20 @@ class ProductController extends Controller
             'Product Added Successfully'
         );
     }
+
+    public function edit(int $product_id)
+    {
+        $categories = Category::all();
+        $brands = Brand::all();
+        $product = Product::findOrFail($product_id);
+        return view(
+            'admin.products.edit',
+            compact('categories', 'brands', 'product')
+        );
+    }
+
+    // public function update(ProductFormRequest $request, int $product_id)
+    // {
+    //     # code...
+    // }
 }
