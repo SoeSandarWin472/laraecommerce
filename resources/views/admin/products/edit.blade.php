@@ -4,6 +4,11 @@
 
 <div class="row">
             <div class="col-md-12">
+
+                 @if (session('message'))
+                            <h5 class="alert alert-success mb-2">{{session('message')}}</h5>
+                        @endif
+
                 <div class="card">
                     <div class="card-header">
                         <h3>Edit Product
@@ -11,6 +16,7 @@
                         </h3>
                     </div>
                     <div class="card-body">
+
                         @if ($errors->any())
                         <div class="alert alert-warning">
                             @foreach ($errors->all() as $error)
@@ -19,8 +25,6 @@
                         </div>
                             
                         @endif
-
-
                         <form action="{{url('admin/products/'.$product->id)}}" method="POST" enctype="multipart/form-data">
                             @csrf  
                             @method('PUT')
@@ -46,7 +50,7 @@
         <label for="">Select Category</label>
         <select name="category_id" class="form-control">
             @foreach ($categories as $category)
-            <option value="{{$category->id}}" {{$category->id==$product->category_id? 'selected':''}}>{{$category->name}}</option>
+            <option value="{{$category->id}}" {{$category->id == $product->category_id ? 'selected':''}}>{{$category->name}}</option>
             @endforeach
         </select>
     </div>
@@ -136,9 +140,14 @@
     </div>
     <div>
         @if ($product->productImages)
+        <div class="row">
             @foreach($product->productImages as $image)
-            <img src="{{asset($image->image)}}" style="width: 80px;height:80px;" class="me-4" alt="Img" />
+            <div class="col-md-2">
+            <img src="{{asset($image->image)}}" style="width: 80px;height:80px;" class="me-4 border" alt="Img" />
+            <a href="{{url('admin/product-image/'.$image->id.'/delete')}}" class="d-block">Remove</a>
+            </div>
             @endforeach
+            </div>
         @else
             <h5>No Image Added</h5>
         @endif
