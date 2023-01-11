@@ -51,6 +51,7 @@ Route::prefix('admin')
             Route::post('/products', 'store');
             Route::get('/products/{product}/edit', 'edit');
             Route::put('/products/{product}', 'update');
+            Route::get('/products/{product_id}/delete', 'destroy');
 
             Route::get(
                 'product-image/{product_image_id}/delete',

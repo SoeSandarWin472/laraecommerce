@@ -149,4 +149,20 @@ class ProductController extends Controller
             ->back()
             ->with('message', 'Product Image Deleted');
     }
+
+    public function destroy(int $product_id)
+    {
+        $product = Product::findOrFail($product_id);
+        if ($product->productImages) {
+            foreach ($product->productImages as $image) {
+                if (File::exists($image->image)) {
+                    File::delete($image->image);
+                }
+            }
+        }
+        $product->delete();
+        return redirect()
+            ->back()
+            ->with('message', 'Product Deleted with all its image');
+    }
 }
