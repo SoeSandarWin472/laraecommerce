@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>Add Category
-                            <a href="{{url('admin/category/create')}}" class="btn btn-primary  text-white btn-sm float-end">BACK</a>
+                            <a href="{{url('admin/category/create')}}" class="btn btn-danger text-white btn-sm float-end">BACK</a>
                         </h3>
                     </div>
                     <div class="card-body">
