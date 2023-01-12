@@ -86,19 +86,19 @@
         <div class="col-md-4">
             <div class="mb-3">
                 <label for="">Original Price</label>
-                <input type="text" name="original_price" class="form-control">
+                <input type="number" name="original_price" class="form-control">
             </div>
         </div>
         <div class="col-md-4">
             <div class="mb-3">
                 <label for="">Selling Price</label>
-                <input type="text" name="selling_price" class="form-control">
+                <input type="number" name="selling_price" class="form-control">
             </div>
         </div>
         <div class="col-md-4">
             <div class="mb-3">
                 <label for="">Quantity</label>
-                <input type="text" name="quantity" class="form-control">
+                <input type="number" name="quantity" class="form-control">
             </div>
         </div>
         <div class="col-md-4">
