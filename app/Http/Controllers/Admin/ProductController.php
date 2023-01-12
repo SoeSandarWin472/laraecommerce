@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\ProductFormRequest;
+use App\Models\Color;
 
 class ProductController extends Controller
 {
@@ -24,7 +25,11 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $brands = Brand::all();
-        return view('admin.products.create', compact('categories', 'brands'));
+        $colors = Color::where('status', '0')->get();
+        return view(
+            'admin.products.create',
+            compact('categories', 'brands', 'colors')
+        );
     }
 
     public function store(ProductFormRequest $request)
@@ -67,6 +72,15 @@ class ProductController extends Controller
             }
         }
 
+        if ($request->colors) {
+            foreach ($request->colors as $key => $color) {
+                $product->productColors()->create([
+                    'product_id' => $product->id,
+                    'color_id' => $color,
+                    'quantity' => $request->colorquantity[$key] ?? 0,
+                ]);
+            }
+        }
         return redirect('/admin/products')->with(
             'message',
             'Product Added Successfully'

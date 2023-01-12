@@ -18,16 +18,16 @@
                             <thead>
                                 <tr>
                                     <td>ID</td>
-                                     <td>Color Name</td>
-                                      <td>Code</td>
-                                       <td>Status</td>
-                                        <td>Action</td>
+                                    <td>Color Name</td>
+                                    <td>Code</td>
+                                    <td>Status</td>
+                                    <td>Action</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($colors as $color)
                                     <tr>
-                                         <td>{{$color->id}}</td>
+                                        <td>{{$color->id}}</td>
                                         <td>{{$color->name}}</td>
                                         <td>{{$color->code}}</td>
                                         <td>{{$color->status=='1'?'hidden':'visible'}}</td>
