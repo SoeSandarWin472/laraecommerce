@@ -63,6 +63,8 @@
 <!-- End custom js for this page-->
 
           @livewireScripts
+          
+          @yield('scripts')
           @stack('script')
 </body>
 </html>

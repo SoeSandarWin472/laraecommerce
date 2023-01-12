@@ -42,6 +42,9 @@
     <li class="nav-item" role="presentation">
     <button class="nav-link" id="image-tab" data-bs-toggle="tab" data-bs-target="#image" type="button" role="tab" aria-controls="image" aria-selected="false">Product Image</button>
   </li>
+   <li class="nav-item" role="presentation">
+    <button class="nav-link" id="color-tab" data-bs-toggle="tab" data-bs-target="#color" type="button" role="tab">Product Colors</button>
+  </li>
 </ul>
 
 <div class="tab-content" id="myTabContent">
@@ -121,13 +124,13 @@
         <div class="col-md-4">
             <div class="mb-3">
                 <label for="">Trending </label>
-                <input type="checkbox" name="trending" value="{{$product->trending == '1'? 'checked': ''}}" style="width:50px;height:50px"/>
+                <input type="checkbox" name="trending"value="{{$product->trending=='1'?'hidden':'visible'}}" style="width:50px;height:50px"/>
             </div>
         </div>
         <div class="col-md-4">
             <div class="mb-3">
                 <label for="">Status</label>
-                <input type="checkbox" name="status" value="{{$product->status == '1'? 'checked':''}}" style="width:50px;height:50px"/>
+                <input type="checkbox" name="status" value="{{$product->status=='1'?'hidden':'visible'}}" style="width:50px;height:50px"/>
             </div>
         </div>
     </div>
@@ -153,7 +156,62 @@
         @endif
     </div>
   </div>
-  
+
+  <div class="tab-pane fade border p-3 " id="color" role="tabpanel">
+   <div class="mb-3">
+    <h4>Add Product Color</h4>
+        <label for="">Select Color</label>
+        <hr />
+        <div class="row">
+        @forelse ($colors as $coloritem)
+            <div class="col-md-3">
+                <div class="p-2 border mb-3">
+
+                Color:<input type="checkbox" name="colors[{{$coloritem->id}}]" value="{{$coloritem->id}}"/>
+                {{$coloritem->name}}<br>
+                Quantity:<input type="number" name="colorquantity[{{$coloritem->id}}]" style="width: 70px;border:1px solid">
+                </div>
+            </div>
+        @empty
+            <div class="col-md-12">
+                <h1>No colors found</h1>
+            </div>
+        @endforelse
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-sm table-bordered">
+            <thead>
+                <tr>
+                    <td>Color Name</td>
+                    <td>Quantity</td>
+                    <td>Delete</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($product->productColors  as $prodColor)
+                <tr class="prod-color-tr">
+                    <td>
+                        @if ($prodColor->color)
+                            {{$prodColor->color->name}}
+                        @else
+                            No Color Found
+                        @endif
+                    </td>
+                    <td>
+                        <div class="input-group mb-3" style="width: 150px">
+                         <input type="text" value="{{$prodColor->quantity}}" class="productColorQuantity form-control form-control-sm">
+                         <button type="button" value="{{$prodColor->id}}" class="updateProductColorBtn btn btn-primary btn-sm text-white">Update</button>
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" value="{{$prodColor->id}}" class="deleteProductColorBtn btn btn-danger btn-sm text-white">Delete</button>
+                    </td>
+                </tr>
+                 @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <div class="py-2 float-end">
@@ -165,4 +223,56 @@
             </div>
 </div>
 
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).on('click','.updateProductColorBtn',function(){
+
+            $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
+            var product_id="{{$product->id}}";
+            var prod_color_id=$(this).val();
+            var qty=$(this).closest('.prod-color-tr').find('.productColorQuantity').val();
+           // alert(prod_color_id);
+
+           if(qty <=0){
+                alert('Quantity is required');
+                return false;
+           }
+
+           var data={
+            'product_id':product_id,
+            'qty':qty
+           };
+
+            $.ajax({
+               type:'POST',
+               url:'/admin/product-color/'+prod_color_id,
+               data:data,
+               success:function(response) {
+                  alert(response.message)
+               }
+            });
+
+             $(document).on('click','.deleteProductColorBtn',function(){
+
+                var prod_color_id=$(this).val();
+                var thisClick=$(this);
+
+                $.ajax({
+               type:'GET',
+               url:'/admin/product-color/'+prod_color_id+'/delete',
+               success:function(response) {
+                thisClick.closest('.prod-color-tr').remove();
+                alert(response.message);
+               }
+            });
+             });
+        });
+    </script>
 @endsection
