@@ -39,8 +39,9 @@ Route::prefix('admin')
             Route::get('/sliders', 'index');
             Route::get('/sliders/create', 'create');
             Route::post('/sliders', 'store');
-            Route::get('/category/{category}/edit', 'edit');
-            Route::put('/category/{category}', 'update');
+            Route::get('/sliders/{slider}/edit', 'edit');
+            Route::put('/sliders/{slider}', 'update');
+            Route::get('/sliders/{slider}/delete', 'destroy');
         });
 
         Route::controller(
