@@ -34,6 +34,17 @@ Route::prefix('admin')
         ]);
 
         Route::controller(
+            App\Http\Controllers\Admin\SliderController::class
+        )->group(function () {
+            Route::get('/sliders', 'index');
+            Route::get('/sliders/create', 'create');
+            Route::post('/sliders', 'store');
+            Route::get('/sliders/{slider}/edit', 'edit');
+            Route::put('/sliders/{slider}', 'update');
+            Route::get('/sliders/{slider}/delete', 'destroy');
+        });
+
+        Route::controller(
             App\Http\Controllers\Admin\CategoryController::class
         )->group(function () {
             Route::get('/category', 'index');
