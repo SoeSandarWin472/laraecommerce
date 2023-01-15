@@ -8,7 +8,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title> @yield('title')</title>
-
+    <meta name="description" content=" @yield('meta_description')">
+    <meta name="keywords" content=" @yield('meta_keyword')">
+    <meta name="author" content="Funda of Web IT">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -30,7 +32,7 @@
         @include('layouts.inc.frontend.navbar')
        
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
     </div>
