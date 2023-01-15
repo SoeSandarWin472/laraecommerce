@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('content')
-    @section('title','Home Page')
 
+    @section('title','Home Page')
+@section('content')
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
   
   <div class="carousel-inner">
