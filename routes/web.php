@@ -32,6 +32,10 @@ Route::get('/collections/{category_slug}', [
     App\Http\Controllers\Frontend\FrontendController::class,
     'products',
 ]);
+Route::get('/collections/{category_slug}/{product_slug}', [
+    App\Http\Controllers\Frontend\FrontendController::class,
+    'productView',
+]);
 
 Route::get('/home', [
     App\Http\Controllers\HomeController::class,
