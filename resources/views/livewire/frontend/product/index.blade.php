@@ -1,7 +1,26 @@
 <div>
     <div class="row">
+        <div class="col-md-3">
+            @if ($category->brands)
+            <div class="card">
+                <div class="card-header">
+                    <h4>Brands</h4>
+                </div>
+                    <div class="card-body">
+                        @foreach($category->brands as $brandItem)
+                             <label for="" class="d-block">
+                            <input type="checkbox" wire:model="brandInputs" value="{{  $brandItem->name }}" />{{  $brandItem->name }}
+                        </label>
+                        @endforeach                    
+                    </div>
+                </div>   
+                 @endif    
+    </div>
+
+    <div class="col-md-9">
+    <div class="row">
          @forelse ($products as $productItem)
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                     <div class="product-card">
                         <div class="product-card-img">
                             @if ($productItem->quantity > 0)
@@ -24,8 +43,8 @@
                                </a>
                             </h5>
                             <div>
-                                <span class="selling-price">{{$productItem->selling_price}}</span>
-                                <span class="original-price">{{$productItem->original_price}}</span>
+                                <span class="selling-price">${{$productItem->selling_price}}</span>
+                                <span class="original-price">${{$productItem->original_price}}</span>
                             </div>
                            
                         </div>
@@ -36,5 +55,7 @@
                     <div class="p-2">
                     <h4>No Products Avaliable for {{$category->name}}</h4></div></div>
                 @endforelse
+                  </div>
+    </div>
     </div>
 </div>
