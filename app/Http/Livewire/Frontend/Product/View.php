@@ -19,6 +19,11 @@ class View extends Component
                     ->exists()
             ) {
                 session()->flash('message', 'Already added to wishlist');
+                $this->dispatchBrowserEvent('message', [
+                    'text' => 'Already added to wishlist',
+                    'type' => 'warning',
+                    'status' => 409,
+                ]);
                 return false;
             } else {
                 Wishlist::create([
@@ -26,9 +31,19 @@ class View extends Component
                     'product_id' => $productId,
                 ]);
                 session()->flash('message', 'Wishlist Added Successfully');
+                $this->dispatchBrowserEvent('message', [
+                    'text' => 'Wishlist Added Successfully',
+                    'type' => 'success',
+                    'status' => 200,
+                ]);
             }
         } else {
             session()->flash('message', 'Please Login to continue');
+            $this->dispatchBrowserEvent('message', [
+                'text' => 'Please Login to continue',
+                'type' => 'info',
+                'status' => 401,
+            ]);
             return false;
         }
     }
