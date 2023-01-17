@@ -37,6 +37,11 @@ Route::get('/collections/{category_slug}/{product_slug}', [
     'productView',
 ]);
 
+Route::get('wishlist', [
+    App\Http\Controllers\Frontend\WishlistController::class,
+    'index',
+]);
+
 Route::get('/home', [
     App\Http\Controllers\HomeController::class,
     'index',
