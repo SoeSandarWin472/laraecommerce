@@ -42,6 +42,10 @@ Route::middleware(['auth'])->group(function () {
         App\Http\Controllers\Frontend\WishlistController::class,
         'index',
     ]);
+    Route::get('cart', [
+        App\Http\Controllers\Frontend\CartController::class,
+        'index',
+    ]);
 });
 
 Route::get('/home', [
