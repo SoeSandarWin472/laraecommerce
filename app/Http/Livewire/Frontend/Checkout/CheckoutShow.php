@@ -20,6 +20,39 @@ class CheckoutShow extends Component
         $payment_mode = null,
         $payment_id = null;
 
+    // protected $listeners = [
+    //     'validationForAll',
+    //     'transcationEmail' => 'paidOnlineOrder',
+    // ];
+
+    // public function transcationEmail($value)
+    // {
+    //     $this->payment_id = $value;
+    //     $this->payment_mode = 'Paid by Paypal';
+    //     $codOrder = $this->placeOrder();
+    //     if ($codOrder) {
+    //         Cart::where('user_id', auth()->user()->id)->delete();
+    //         session()->flash('message', 'OrderPlaced Successfully');
+    //         $this->dispatchBrowserEvent('message', [
+    //             'text' => 'Order Placed Successfully',
+    //             'type' => 'success',
+    //             'status' => 200,
+    //         ]);
+    //         return redirect()->to('thank-you');
+    //     } else {
+    //         $this->dispatchBrowserEvent('message', [
+    //             'text' => 'Something went Wrong',
+    //             'type' => 'error',
+    //             'status' => 500,
+    //         ]);
+    //     }
+    // }
+
+    // public function validationForAll()
+    // {
+    //     $this->validate();
+    // }
+
     public function rules()
     {
         return [
@@ -55,6 +88,17 @@ class CheckoutShow extends Component
                 'quantity' => $cartItem->quantity,
                 'price' => $cartItem->product->selling_price,
             ]);
+            if ($cartItem->product_color_id != null) {
+                $cartItem
+                    ->productColor()
+                    ->where('id', $cartItem->product_color_id)
+                    ->decrement('quantity', $cartItem->quantity);
+            } else {
+                $cartItem
+                    ->product()
+                    ->where('id', $cartItem->product_id)
+                    ->decrement('quantity', $cartItem->quantity);
+            }
         }
         return $order;
     }
@@ -64,6 +108,7 @@ class CheckoutShow extends Component
         $codOrder = $this->placeOrder();
         if ($codOrder) {
             Cart::where('user_id', auth()->user()->id)->delete();
+            session()->flash('message', 'OrderPlaced Successfully');
             $this->dispatchBrowserEvent('message', [
                 'text' => 'Order Placed Successfully',
                 'type' => 'success',
@@ -81,6 +126,7 @@ class CheckoutShow extends Component
 
     public function totalProductAmount()
     {
+        $this->totalProductAmount = 0;
         $this->carts = Cart::where('user_id', auth()->user()->id)->get();
         foreach ($this->carts as $cartItem) {
             $this->totalProductAmount +=
@@ -92,6 +138,7 @@ class CheckoutShow extends Component
     {
         $this->fullname = auth()->user()->name;
         $this->email = auth()->user()->email;
+
         $this->totalProductAmount = $this->totalProductAmount();
         return view('livewire.frontend.checkout.checkout-show', [
             'totalProductAmount' => $this->totalProductAmount,
