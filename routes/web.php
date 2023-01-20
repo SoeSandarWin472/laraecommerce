@@ -50,6 +50,14 @@ Route::middleware(['auth'])->group(function () {
         App\Http\Controllers\Frontend\CheckoutController::class,
         'index',
     ]);
+    Route::get('orders', [
+        App\Http\Controllers\Frontend\OrderController::class,
+        'index',
+    ]);
+    Route::get('orders/{orderId}', [
+        App\Http\Controllers\Frontend\OrderController::class,
+        'show',
+    ]);
 });
 
 Route::get('thank-you', [
