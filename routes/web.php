@@ -50,6 +50,14 @@ Route::middleware(['auth'])->group(function () {
         App\Http\Controllers\Frontend\CheckoutController::class,
         'index',
     ]);
+    Route::get('orders', [
+        App\Http\Controllers\Frontend\OrderController::class,
+        'index',
+    ]);
+    Route::get('orders/{orderId}', [
+        App\Http\Controllers\Frontend\OrderController::class,
+        'show',
+    ]);
 });
 
 Route::get('thank-you', [
@@ -124,5 +132,12 @@ Route::prefix('admin')
             Route::get('/colors/{color}/edit', 'edit');
             Route::put('/colors/{color_id}', 'update');
             Route::get('/colors/{color_id}/delete', 'destroy');
+        });
+
+        Route::controller(
+            App\Http\Controllers\Admin\OrderController::class
+        )->group(function () {
+            Route::get('/orders', 'index');
+            Route::get('/orders/{orderId}', 'show');
         });
     });

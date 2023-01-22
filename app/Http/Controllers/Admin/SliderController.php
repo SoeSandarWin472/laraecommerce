@@ -57,7 +57,7 @@ class SliderController extends Controller
         $validatedData = $request->validated();
 
         if ($request->hasFile('image')) {
-            $destination = $slider->image;
+            $destination = public_path($slider->image);
             if (File::exists($destination)) {
                 File::delete($destination);
             }
