@@ -19,7 +19,7 @@
                                 <div class="col-md-3">
                                     <label for="">Filter by Status</label>
                                     <select name="status" id="" class="form-select">
-                                        <option value="">Select Stauts</option>
+                                        <option value="">Select All Stauts</option>
                                         <option value="in progress"{{ Request::get('status')=='in progress' ? 'selected':'' }}>In Progress</option>
                                         <option value="complete"{{ Request::get('status')=='complete' ? 'selected':'' }}>Complete</option>
                                         <option value="pending"{{ Request::get('status')=='pending' ? 'selected':'' }}>Pending</option>
