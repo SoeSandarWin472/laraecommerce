@@ -16,7 +16,9 @@
                   
                         <h4 class="text-primary">
                           <i class="fa fa-shopping-cart" aria-hidden="true"></i> My Order Details
-                            <a href="{{ url('admin/orders') }}" class="btn btn-danger btn-sm float-end">BACK</a>
+                            <a href="{{ url('admin/orders') }}" class="btn btn-danger btn-sm float-end mx-1">BACK</a>
+                            <a href="{{ url('admin/invoice/'.$order->id.'/generate') }}" class="btn btn-primary btn-sm float-end mx-1">Download Invoice</a>
+                            <a href="{{ url('admin/invoice/'.$order->id) }}" class="btn btn-warning btn-sm float-end mx-1">View Invoice</a>
                         </h4>
                         <hr>
 
@@ -79,15 +81,15 @@
                                         </td>
                                         <td width="10%">${{ $orderItem->price }}</td>
                                         <td width="10%">{{ $orderItem->quantity }}</td>
-                                        <td width="10%" class="fw-bold">${{ $orderItem->quantity * $orderItem->price }}</td>
+                                        <td width="15%" class="fw-bold">${{ $orderItem->quantity * $orderItem->price }}</td>
                                        @php
                                         $totalPrice+=$orderItem->quantity * $orderItem->price;
                                     @endphp
                                     </tr>
                                    @endforeach
                                    <tr>
-                                    <td colspan="5" class="fw-bold">Total Amount:</td>
-                                    <td colspan="1" class="fw-bold">{{ $totalPrice }}</td>
+                                    <td colspan="4" class="total-heading">Total Amount:</td>
+                                    <td colspan="1" class="total-heading">${{ $totalPrice }}</td>
                                    </tr>
                                 </tbody>
                             </table>
