@@ -139,5 +139,8 @@ Route::prefix('admin')
         )->group(function () {
             Route::get('/orders', 'index');
             Route::get('/orders/{orderId}', 'show');
+            Route::put('/orders/{orderId}', 'UpdateOrderStatus');
+            Route::get('/invoice/{orderId}', 'viewInvoice');
+            Route::get('/invoice/{orderId}/generate', 'generateInvoice');
         });
     });
