@@ -49,6 +49,9 @@
         <main>
             @yield('content')
         </main>
+
+
+        @include('layouts.inc.frontend.footer')
     </div>
     {{-- Script --}}
     <script src="{{asset('assets/js/jquery-3.6.3.min.js')}}"></script>
