@@ -71,6 +71,15 @@ Route::prefix('admin')
             App\Http\Controllers\Admin\DashboardController::class,
             'index',
         ]);
+        Route::get('/settings', [
+            App\Http\Controllers\Admin\SettingController::class,
+            'index',
+        ]);
+
+        Route::post('/settings', [
+            App\Http\Controllers\Admin\SettingController::class,
+            'store',
+        ]);
 
         Route::controller(
             App\Http\Controllers\Admin\SliderController::class
