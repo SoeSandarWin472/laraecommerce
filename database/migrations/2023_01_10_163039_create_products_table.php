@@ -29,6 +29,10 @@ return new class extends Migration {
                 ->default('0')
                 ->comment('1=trending,0=not-trending');
             $table
+                ->tinyInteger('featured')
+                ->default('0')
+                ->comment('1=featured,0=not-featured');
+            $table
                 ->tinyInteger('status')
                 ->default('0')
                 ->comment('1=hidden,0=visible');

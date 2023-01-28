@@ -11,6 +11,14 @@
                         </h3>
                     </div>
                     <div class="card-body">
+                        @if ($errors->any())
+                        <div class="alert alert-warning">
+                            @foreach ($errors->all() as $error)
+                                <div>{{ $error }}</div>
+                            @endforeach
+                        </div>
+                            
+                        @endif
                         <form action="{{url('admin/products')}}" method="POST" enctype="multipart/form-data">
                             @csrf
 
@@ -108,6 +116,12 @@
             <div class="mb-3">
                 <label for="">Trending </label>
                 <input type="checkbox" name="trending" style="width:50px;height:50px"/>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="mb-3">
+                <label for="">Featured </label>
+                <input type="checkbox" name="featured" style="width:50px;height:50px"/>
             </div>
         </div>
         <div class="col-md-4">
