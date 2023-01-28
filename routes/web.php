@@ -29,7 +29,7 @@ Route::controller(
     Route::get('/collections/{category_slug}/{product_slug}', 'productView');
     Route::get('/new-arrivals', 'newArrival');
     Route::get('/featured-products', 'featuredProducts');
-    Route::get('search','searchProducts');
+    Route::get('search', 'searchProducts');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -52,6 +52,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('orders/{orderId}', [
         App\Http\Controllers\Frontend\OrderController::class,
         'show',
+    ]);
+    Route::get('profile', [
+        App\Http\Controllers\Frontend\UserController::class,
+        'index',
+    ]);
+    Route::post('profile', [
+        App\Http\Controllers\Frontend\UserController::class,
+        'updateUserDetails',
     ]);
 });
 
