@@ -11,6 +11,14 @@
                         </h3>
                     </div>
                     <div class="card-body">
+                        @if ($errors->any())
+                        <div class="alert alert-warning">
+                            @foreach ($errors->all() as $error)
+                                <div>{{ $error }}</div>
+                            @endforeach
+                        </div>
+                            
+                        @endif
                         <form action="{{url('admin/products')}}" method="POST" enctype="multipart/form-data">
                             @csrf
 
