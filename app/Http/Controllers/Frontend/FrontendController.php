@@ -35,6 +35,24 @@ class FrontendController extends Controller
         );
     }
 
+    public function searchProducts(Request $request)
+    {
+        if ($request->search) {
+            $searchProducts = Product::where(
+                'name',
+                'LIKE',
+                '%' . $request->search . '%'
+            )
+                ->latest()
+                ->paginate(15);
+            return view('frontend.pages.search', compact('searchProducts'));
+        } else {
+            return redirect()
+                ->back()
+                ->with('message', 'Empty Search');
+        }
+    }
+
     public function newArrival()
     {
         $newarrivalsProducts = Product::latest()
