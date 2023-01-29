@@ -162,6 +162,7 @@ Route::prefix('admin')
             Route::put('/orders/{orderId}', 'UpdateOrderStatus');
             Route::get('/invoice/{orderId}', 'viewInvoice');
             Route::get('/invoice/{orderId}/generate', 'generateInvoice');
+            Route::get('/invoice/{orderId}/mail', 'mailInvoice');
         });
 
         Route::controller(
