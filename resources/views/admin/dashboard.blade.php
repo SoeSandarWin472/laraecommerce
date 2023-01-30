@@ -18,7 +18,7 @@
                   <div class="card card-body bg-primary text-white mb-3">
                     <label for="">Total Orders</label>
                     <h1>{{ $totalOrder }}</h1>
-                    <a href="{{ url('admin/orders') }}" class="text-white">View</a>
+                    <a href="{{ url('orders') }}" class="text-white">View</a>
                   </div>
                 </div>
 
@@ -34,7 +34,7 @@
                   <div class="card card-body bg-warning text-white mb-3">
                     <label for="">This Month Orders</label>
                     <h1>{{ $thisMonthOrder }}</h1>
-                    <a href="{{ url('admin/orders') }}" class="text-white">View</a>
+                    <a href="{{ url('orders') }}" class="text-white">View</a>
                   </div>
                 </div>
 
@@ -42,7 +42,7 @@
                   <div class="card card-body bg-danger text-white mb-3">
                     <label for=""> Year Orders</label>
                     <h1>{{ $thisYearOrder }}</h1>
-                    <a href="{{ url('admin/orders') }}" class="text-white">View</a>
+                    <a href="{{ url('orders') }}" class="text-white">View</a>
                   </div>
                 </div>
               </div>
@@ -80,7 +80,10 @@
                   <div class="card card-body bg-primary text-white mb-3">
                     <label for="">All User</label>
                     <h1>{{ $totalAllUsers }}</h1>
-                    <a href="{{ url('admin/users') }}" class="text-white">View</a>
+                    @php
+                      $role = "3";
+                    @endphp
+                    <a href="{{ url('admin/users/'.$role) }}" class="text-white">View</a>
                   </div>
                 </div>
 
@@ -88,7 +91,10 @@
                   <div class="card card-body bg-success text-white mb-3">
                     <label for="">Total Users</label>
                     <h1>{{ $totalUser }}</h1>
-                    <a href="{{ url('admin/users') }}" class="text-white">View</a>
+                     @php
+                      $role = 0;
+                    @endphp
+                    <a href="{{ url('admin/users/'.$role) }}" class="text-white">View</a>
                   </div>
                 </div>
 
@@ -96,7 +102,10 @@
                   <div class="card card-body bg-warning text-white mb-3">
                     <label for="">Total Admins</label>
                     <h1>{{ $totalAdmin }}</h1>
-                    <a href="{{ url('admin/users') }}" class="text-white">View</a>
+                     @php
+                      $role = 1;
+                    @endphp
+                    <a href="{{ url('admin/users/'.$role) }}" class="text-white">View</a>
                   </div>
                 </div>
               </div>

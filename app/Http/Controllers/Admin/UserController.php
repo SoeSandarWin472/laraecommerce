@@ -90,4 +90,14 @@ class UserController extends Controller
             'User Deleted Successfully'
         );
     }
+
+    public function showUser($role)
+    {
+        if ($role != '3') {
+            $users = User::where('role_as', $role)->paginate(10);
+        } else {
+            $users = User::paginate(10);
+        }
+        return view('admin.users.index', compact('users'));
+    }
 }

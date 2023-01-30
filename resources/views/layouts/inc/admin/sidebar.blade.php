@@ -2,19 +2,19 @@
         <ul class="nav">
           <li class="nav-item {{ Request::is('admin/dashboard')? 'active':'' }}">
             <a class="nav-link" href="{{url('admin/dashboard')}}">
-              <i class="mdi mdi-home menu-icon"></i>
+              <i class="mdi mdi-speedometer menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item {{ Request::is('admin/orders')? 'active':'' }}">
             <a class="nav-link" href="{{ url('admin/orders') }}">
-              <i class="mdi mdi-view-headline menu-icon"></i>
+              <i class="mdi mdi-apple-safari menu-icon"></i>
               <span class="menu-title">Orders</span>
             </a>
           </li>
             <li class="nav-item {{ Request::is('admin/category*')? 'active':'' }}">
              <a class="nav-link" data-bs-toggle="collapse" href="#category" aria-expanded="{{ Request::is('admin/category*')? 'true':'false' }}" aria-controls="ui-basic">
-              <i class="mdi mdi-plus-circle menu-icon"></i>
+              <i class="mdi mdi-view-list menu-icon"></i>
               <span class="menu-title">Category</span>
                <i class="menu-arrow"></i>
             </a>
@@ -56,7 +56,7 @@
 
            <li class="nav-item {{ Request::is('admin/users*')? 'active':'' }}">
              <a class="nav-link" data-bs-toggle="collapse" href="#users" aria-expanded="{{ Request::is('admin/users*')? 'true':'false' }}" aria-controls="ui-basic">
-              <i class="mdi mdi-plus-circle menu-icon"></i>
+              <i class="mdi mdi-account-multiple-plus menu-icon"></i>
               <span class="menu-title">Users</span>
                <i class="menu-arrow"></i>
             </a>

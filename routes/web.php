@@ -174,5 +174,7 @@ Route::prefix('admin')
             Route::get('/users/{user_id}/edit', 'edit');
             Route::put('/users/{user_id}', 'update');
             Route::get('/users/{user_id}/delete', 'destroy');
+
+            Route::get('/users/{role}', 'showUser');
         });
     });
