@@ -80,6 +80,15 @@
 </head>
 <body>
 
+    <div class="text-center">
+        <h2>Thank you for your Order</h2>
+        <p>Thank you for purchasing with  {{ $appSetting->website_name ?? "Funda of Web IT"}}.
+            <br>
+            Your order items and details are provideed below.
+
+        </p>
+    </div>
+
     <table class="order-details">
         <thead>
             <tr>
