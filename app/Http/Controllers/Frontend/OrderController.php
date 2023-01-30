@@ -13,7 +13,7 @@ class OrderController extends Controller
     {
         $orders = Order::where('user_id', Auth::user()->id)
             ->orderBy('created_at', 'desc')
-            ->paginate(1);
+            ->paginate(16);
         return view('frontend.orders.index', compact('orders'));
     }
     public function show($orderId)

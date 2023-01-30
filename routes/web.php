@@ -61,6 +61,14 @@ Route::middleware(['auth'])->group(function () {
         App\Http\Controllers\Frontend\UserController::class,
         'updateUserDetails',
     ]);
+    Route::get('change-password', [
+        App\Http\Controllers\Frontend\UserController::class,
+        'passwordCreate',
+    ]);
+    Route::post('change-password', [
+        App\Http\Controllers\Frontend\UserController::class,
+        'changePassword',
+    ]);
 });
 
 Route::get('thank-you', [
@@ -154,6 +162,7 @@ Route::prefix('admin')
             Route::put('/orders/{orderId}', 'UpdateOrderStatus');
             Route::get('/invoice/{orderId}', 'viewInvoice');
             Route::get('/invoice/{orderId}/generate', 'generateInvoice');
+            Route::get('/invoice/{orderId}/mail', 'mailInvoice');
         });
 
         Route::controller(

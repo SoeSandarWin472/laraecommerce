@@ -10,18 +10,20 @@
                 @endif
                 <div class="card">
                     <div class="card-header">
-                        <h3>Order Details</h3>
-                    </div>
-                    <div class="card-body">
-                  
-                        <h4 class="text-primary">
-                          <i class="fa fa-shopping-cart" aria-hidden="true"></i> My Order Details
-                            <a href="{{ url('admin/orders') }}" class="btn btn-danger btn-sm float-end mx-1">BACK</a>
-                            <a href="{{ url('admin/invoice/'.$order->id.'/generate') }}" class="btn btn-primary btn-sm float-end mx-1">Download Invoice</a>
-                            <a href="{{ url('admin/invoice/'.$order->id) }}" class="btn btn-warning btn-sm float-end mx-1">View Invoice</a>
-                        </h4>
-                        <hr>
+                        <h3>My Order Details
 
+                            <a href="{{ url('admin/orders') }}" class="btn btn-danger btn-sm float-end mx-1">
+                                <span class="fa fa-arrow-left" aria-hidden="true"></span>BACK</a>
+                            <a href="{{ url('admin/invoice/'.$order->id.'/generate') }}" class="btn btn-primary btn-sm float-end mx-1">
+                                <span class="fa fa-download" aria-hidden="true"></span>Download Invoice</a>
+                            <a href="{{ url('admin/invoice/'.$order->id) }}" target="_blank" class="btn btn-warning btn-sm float-end mx-1">
+                                <span class="fa fa-eye" aria-hidden="true"></span>View Invoice</a>
+                            <a href="{{ url('admin/invoice/'.$order->id.'/mail') }}" class="btn btn-info btn-sm float-end mx-1">
+                                <span class="fa fa-eye" aria-hidden="true"></span>Send Invoice Via Mail</a>
+                        </h3>
+                    </div>
+
+                        <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <h5>Order Details</h5>
@@ -84,11 +86,11 @@
                                         <td width="15%" class="fw-bold">${{ $orderItem->quantity * $orderItem->price }}</td>
                                        @php
                                         $totalPrice+=$orderItem->quantity * $orderItem->price;
-                                    @endphp
+                                      @endphp
                                     </tr>
                                    @endforeach
                                    <tr>
-                                    <td colspan="4" class="total-heading">Total Amount:</td>
+                                    <td colspan="5" class="total-heading">Total Amount:</td>
                                     <td colspan="1" class="total-heading">${{ $totalPrice }}</td>
                                    </tr>
                                 </tbody>

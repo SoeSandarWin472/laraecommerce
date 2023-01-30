@@ -18,7 +18,7 @@
                   <div class="card card-body bg-primary text-white mb-3">
                     <label for="">Total Orders</label>
                     <h1>{{ $totalOrder }}</h1>
-                    <a href="{{ url('admin.orders') }}" class="text-white">View</a>
+                    <a href="{{ url('admin/orders') }}" class="text-white">View</a>
                   </div>
                 </div>
 
@@ -26,7 +26,7 @@
                   <div class="card card-body bg-success text-white mb-3">
                     <label for="">Today Orders</label>
                     <h1>{{ $todayOrder }}</h1>
-                    <a href="{{ url('admin.orders') }}" class="text-white">View</a>
+                    <a href="{{ url('admin/orders') }}" class="text-white">View</a>
                   </div>
                 </div>
 
@@ -34,7 +34,7 @@
                   <div class="card card-body bg-warning text-white mb-3">
                     <label for="">This Month Orders</label>
                     <h1>{{ $thisMonthOrder }}</h1>
-                    <a href="{{ url('admin.orders') }}" class="text-white">View</a>
+                    <a href="{{ url('admin/orders') }}" class="text-white">View</a>
                   </div>
                 </div>
 
@@ -42,7 +42,7 @@
                   <div class="card card-body bg-danger text-white mb-3">
                     <label for=""> Year Orders</label>
                     <h1>{{ $thisYearOrder }}</h1>
-                    <a href="{{ url('admin.orders') }}" class="text-white">View</a>
+                    <a href="{{ url('admin/orders') }}" class="text-white">View</a>
                   </div>
                 </div>
               </div>
